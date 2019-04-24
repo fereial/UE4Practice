@@ -3,7 +3,7 @@
 /MACHINE:x64
 /SUBSYSTEM:WINDOWS
 /DEF
-/NAME:"UE4Editor-UE4Practice.dll"
+/NAME:"UE4Editor-UE4Practice-8238.dll"
 /IGNORE:4221
 /NODEFAULTLIB
 "D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Intermediate\Build\Win64\UE4PracticeEditor\Development\Engine\SharedPCH.Engine.h.obj"
@@ -14,5 +14,5 @@
 "D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Intermediate\Build\Win64\UE4Editor\Development\UE4Practice\UE4Practice.init.gen.cpp.obj"
 "D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Intermediate\Build\Win64\UE4Editor\Development\UE4Practice\UE4PracticeGameModeBase.gen.cpp.obj"
 "D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Intermediate\Build\Win64\UE4Editor\Development\UE4Practice\Default.rc2.res"
-/OUT:"D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Intermediate\Build\Win64\UE4Editor\Development\UE4Practice\UE4Editor-UE4Practice.lib"
+/OUT:"D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Intermediate\Build\Win64\UE4Editor\Development\UE4Practice\UE4Editor-UE4Practice-8238.lib"
 /INCLUDE:IMPLEMENT_MODULE_UE4Practice
