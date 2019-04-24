@@ -1,0 +1,3 @@
+D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Source\UE4Practice\UE4Practice.Build.cs
+D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Source\UE4Practice.Target.cs
+D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Source\UE4PracticeEditor.Target.cs
