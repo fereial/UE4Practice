@@ -1,0 +1,5 @@
+D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Intermediate\Build\Win64\UE4Editor\Development\UE4Practice\Definitions.UE4Practice.h
+D:\UE4\UE_4.22\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+D:\UE4\UE_4.22\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+D:\PersonalProjectRepo\UE4Projects\UE4Practice\UE4Practice\Source\UE4Practice/MyTranfosm.h
+d:\personalprojectrepo\ue4projects\ue4practice\ue4practice\intermediate\build\win64\ue4editor\inc\ue4practice\MyTranfosm.generated.h
