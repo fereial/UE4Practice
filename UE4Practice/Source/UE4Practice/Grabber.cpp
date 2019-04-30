@@ -2,6 +2,9 @@
 
 
 #include "Grabber.h"
+#include "GameFramework/Actor.h"
+#include "DrawDebugHelpers.h"
+
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -29,6 +32,28 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	FVector ViewPortLocation;
+	FRotator ViewPortRatation;
+
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
+		ViewPortLocation,
+		ViewPortRatation
+	);
+
+	FVector DebugRay = ViewPortLocation +ViewPortRatation.Vector() * RayLength;
+
+	DrawDebugLine(
+		GetWorld(),
+		ViewPortLocation,
+		DebugRay,
+		FColor(255, 0, 0),
+		false,
+		0.f,
+		0.f,
+		15.f
+	);
+
+
+
 }
 

@@ -57,7 +57,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UGrabber); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UGrabber)
 
 
-#define UE4Practice_Source_UE4Practice_Grabber_h_13_PRIVATE_PROPERTY_OFFSET
+#define UE4Practice_Source_UE4Practice_Grabber_h_13_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__RayLength() { return STRUCT_OFFSET(UGrabber, RayLength); }
+
+
 #define UE4Practice_Source_UE4Practice_Grabber_h_10_PROLOG
 #define UE4Practice_Source_UE4Practice_Grabber_h_13_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
