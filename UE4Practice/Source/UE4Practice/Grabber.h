@@ -3,8 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Components/ActorComponent.h"
+#include "Components/InputComponent.h"
 #include "Grabber.generated.h"
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -24,8 +27,31 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+
 private:
+
+
 	UPROPERTY(EditAnywhere)
 	float RayLength = 100.f;
+	UPROPERTY()
+	FVector ViewPortLocation;
+	UPROPERTY()
+	FRotator ViewPortRatation;
+
+	UPhysicsHandleComponent * PhysicHandle = nullptr;
+
+	UInputComponent * InputComponent = nullptr;
+
+	UFUNCTION(BlueprintCallable)
+	void Grab();
+
+	UFUNCTION(BlueprintCallable)
+	void Reasle();
+
+	void InitialazeVariables();
+
+	void InputInitalzer();
+
+	AActor* FindTargetActor();
 
 };

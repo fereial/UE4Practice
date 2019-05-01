@@ -4,6 +4,8 @@
 #include "Grabber.h"
 #include "GameFramework/Actor.h"
 #include "DrawDebugHelpers.h"
+#include "Runtime/Engine/Public/CollisionQueryParams.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
 
 
 // Sets default values for this component's properties
@@ -22,7 +24,9 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+	InitialazeVariables();
+	
+	InputInitalzer();
 	
 }
 
@@ -32,28 +36,65 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	FVector ViewPortLocation;
-	FRotator ViewPortRatation;
 
+
+}
+
+void UGrabber::Grab()
+{
+	AActor *ActorHit = FindTargetActor();
+	if (ActorHit != nullptr)
+	{
+		
+	}
+
+	
+}
+
+void UGrabber::Reasle()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Realse"));
+}
+
+void UGrabber::InitialazeVariables()
+{
+	PhysicHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+
+}
+
+void UGrabber::InputInitalzer()
+{
+
+	if (InputComponent != nullptr)
+	{
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Reasle);
+	}
+
+}
+
+ AActor* UGrabber::FindTargetActor()
+{
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
 		ViewPortLocation,
 		ViewPortRatation
 	);
 
-	FVector DebugRay = ViewPortLocation +ViewPortRatation.Vector() * RayLength;
+	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());
 
-	DrawDebugLine(
-		GetWorld(),
+	FVector DebugRay = ViewPortLocation + ViewPortRatation.Vector() * RayLength;
+
+	FHitResult Hit;
+
+	GetWorld()->LineTraceSingleByObjectType(
+		Hit,
 		ViewPortLocation,
 		DebugRay,
-		FColor(255, 0, 0),
-		false,
-		0.f,
-		0.f,
-		15.f
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+		TraceParams
 	);
-
-
-
+	return Hit.GetActor();
 }
 
