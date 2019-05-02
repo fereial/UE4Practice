@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "DrawDebugHelpers.h"
 #include "Runtime/Engine/Public/CollisionQueryParams.h"
+#include "Runtime/Engine/Classes/Components/PrimitiveComponent.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 
 
@@ -35,17 +36,30 @@ void UGrabber::BeginPlay()
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	DebugRay = GetRaycastEnd();
 
-
+	if (PhysicHandle->GrabbedComponent) 
+	{
+		PhysicHandle->SetTargetLocation(DebugRay);
+	}
 
 }
 
 void UGrabber::Grab()
 {
-	AActor *ActorHit = FindTargetActor();
+	FHitResult RayCastHit = ObjectToGrab();
+	auto ComponentToGrab = RayCastHit.GetComponent();
+	AActor *ActorHit = RayCastHit.GetActor();
+
 	if (ActorHit != nullptr)
 	{
-		
+		PhysicHandle->GrabComponent(
+			ComponentToGrab,
+			NAME_None,
+			ComponentToGrab->GetOwner()->GetActorLocation(),
+			true
+		);
+			
 	}
 
 	
@@ -53,7 +67,7 @@ void UGrabber::Grab()
 
 void UGrabber::Reasle()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Realse"));
+	PhysicHandle->ReleaseComponent();
 }
 
 void UGrabber::InitialazeVariables()
@@ -75,18 +89,15 @@ void UGrabber::InputInitalzer()
 
 }
 
- AActor* UGrabber::FindTargetActor()
+FHitResult UGrabber::ObjectToGrab()
 {
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
-		ViewPortLocation,
-		ViewPortRatation
-	);
 
-	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());
 
-	FVector DebugRay = ViewPortLocation + ViewPortRatation.Vector() * RayLength;
+	FVector DebugRay = GetRaycastEnd();
 
 	FHitResult Hit;
+
+	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());
 
 	GetWorld()->LineTraceSingleByObjectType(
 		Hit,
@@ -95,6 +106,17 @@ void UGrabber::InputInitalzer()
 		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
 		TraceParams
 	);
-	return Hit.GetActor();
+
+	return Hit;
+}
+
+FVector UGrabber::GetRaycastEnd()
+{
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
+		ViewPortLocation,
+		ViewPortRatation
+	);
+
+	return ViewPortLocation + ViewPortRatation.Vector() * RayLength;
 }
 

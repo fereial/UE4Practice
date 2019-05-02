@@ -52,6 +52,10 @@ private:
 
 	void InputInitalzer();
 
-	AActor* FindTargetActor();
+	FHitResult ObjectToGrab();
+
+	FVector GetRaycastEnd();
+
+	FVector DebugRay = FVector(0.f, 0.f, 0.f);
 
 };
