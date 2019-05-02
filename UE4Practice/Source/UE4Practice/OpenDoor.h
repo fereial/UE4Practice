@@ -38,6 +38,9 @@ private:
 	float TimeToClooseDoor = 5.f;
 	
 	UPROPERTY(EditAnywhere)
+	float MassToOpenDoor = 50.f;
+
+	UPROPERTY(EditAnywhere)
 	ATriggerVolume *PresssurePlate;
 
 	UPROPERTY()
@@ -46,9 +49,12 @@ private:
 	UPROPERTY()
 	AActor *MyActor;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void OpenDor();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void ClooseDoor();
+
+	UFUNCTION(BlueprintCallable)
+	float GetMassOnTrriger();
 };

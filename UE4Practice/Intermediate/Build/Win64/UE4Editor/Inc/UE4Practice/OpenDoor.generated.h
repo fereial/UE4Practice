@@ -15,6 +15,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define UE4Practice_Source_UE4Practice_OpenDoor_h_13_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execGetMassOnTrriger) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetMassOnTrriger(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execClooseDoor) \
 	{ \
 		P_FINISH; \
@@ -33,6 +41,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 
 #define UE4Practice_Source_UE4Practice_OpenDoor_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetMassOnTrriger) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetMassOnTrriger(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execClooseDoor) \
 	{ \
@@ -98,6 +114,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UOpenDoor); \
 	FORCEINLINE static uint32 __PPO__OpenTime() { return STRUCT_OFFSET(UOpenDoor, OpenTime); } \
 	FORCEINLINE static uint32 __PPO__bIsDoorOpen() { return STRUCT_OFFSET(UOpenDoor, bIsDoorOpen); } \
 	FORCEINLINE static uint32 __PPO__TimeToClooseDoor() { return STRUCT_OFFSET(UOpenDoor, TimeToClooseDoor); } \
+	FORCEINLINE static uint32 __PPO__MassToOpenDoor() { return STRUCT_OFFSET(UOpenDoor, MassToOpenDoor); } \
 	FORCEINLINE static uint32 __PPO__PresssurePlate() { return STRUCT_OFFSET(UOpenDoor, PresssurePlate); } \
 	FORCEINLINE static uint32 __PPO__PresssurePlateActor() { return STRUCT_OFFSET(UOpenDoor, PresssurePlateActor); } \
 	FORCEINLINE static uint32 __PPO__MyActor() { return STRUCT_OFFSET(UOpenDoor, MyActor); }
